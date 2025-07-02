@@ -8,6 +8,7 @@ import InventoryList from './components/InventoryList';
 import SalesList from './components/SalesList';
 import InvoicesList from './components/InvoicesList';
 import SubscriptionsList from './components/SubscriptionsList';
+import MonitoringDashboard from './components/MonitoringDashboard'; // Nuevo componente
 import SettingsPanel from './components/SettingsPanel';
 
 // Importar datos de ejemplo
@@ -111,6 +112,10 @@ function App() {
             />
           )}
 
+          {activeSection === 'monitoring' && (
+            <MonitoringDashboard />
+          )}
+
           {activeSection === 'settings' && (
             <SettingsPanel
               settings={{
@@ -152,5 +157,4 @@ function App() {
 }
 
 export default App;
-
 // DONE
