@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AdminDashboard from './AdminDashboard'; // Importar el nuevo componente
 
 const SettingsPanel = ({ settings, onSave }) => {
   const [activeTab, setActiveTab] = useState('general');
@@ -72,6 +73,21 @@ const SettingsPanel = ({ settings, onSave }) => {
               </button>
 
               <button
+                onClick={() => setActiveTab('adminPanel')}
+                className={`w-full flex items-center px-3 py-2 text-sm font-medium rounded-md ${
+                  activeTab === 'adminPanel'
+                    ? 'bg-gray-800 text-white'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                }`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className={`mr-3 h-5 w-5 ${activeTab === 'adminPanel' ? 'text-emerald-500' : 'text-gray-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Panel de Administrador
+              </button>
+
+              <button
                 onClick={() => setActiveTab('appearance')}
                 className={`w-full flex items-center px-3 py-2 text-sm font-medium rounded-md ${
                   activeTab === 'appearance'
@@ -117,9 +133,8 @@ const SettingsPanel = ({ settings, onSave }) => {
 
           {/* Contenido de la configuración */}
           <div className="flex-1 p-6">
-            <form onSubmit={handleSubmit}>
-              {/* Configuración General */}
-              {activeTab === 'general' && (
+            {activeTab === 'general' && (
+              <form onSubmit={handleSubmit}>
                 <div className="space-y-6">
                   <h3 className="text-lg font-medium text-white">Información General</h3>
 
@@ -223,10 +238,29 @@ const SettingsPanel = ({ settings, onSave }) => {
                     </div>
                   </div>
                 </div>
-              )}
+                <div className="mt-8 flex justify-end">
+                  <button
+                    type="button"
+                    className="mr-3 px-4 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                  >
+                    Guardar Cambios
+                  </button>
+                </div>
+              </form>
+            )}
 
-              {/* Configuración de Apariencia */}
-              {activeTab === 'appearance' && (
+            {activeTab === 'adminPanel' && (
+              <AdminDashboard />
+            )}
+
+            {activeTab === 'appearance' && (
+              <form onSubmit={handleSubmit}>
                 <div className="space-y-6">
                   <h3 className="text-lg font-medium text-white">Apariencia</h3>
 
@@ -330,10 +364,25 @@ const SettingsPanel = ({ settings, onSave }) => {
                     </div>
                   </div>
                 </div>
-              )}
+                <div className="mt-8 flex justify-end">
+                  <button
+                    type="button"
+                    className="mr-3 px-4 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                  >
+                    Guardar Cambios
+                  </button>
+                </div>
+              </form>
+            )}
 
-              {/* Configuración de Notificaciones */}
-              {activeTab === 'notifications' && (
+            {activeTab === 'notifications' && (
+              <form onSubmit={handleSubmit}>
                 <div className="space-y-6">
                   <h3 className="text-lg font-medium text-white">Notificaciones</h3>
 
@@ -441,10 +490,25 @@ const SettingsPanel = ({ settings, onSave }) => {
                     </div>
                   </div>
                 </div>
-              )}
+                <div className="mt-8 flex justify-end">
+                  <button
+                    type="button"
+                    className="mr-3 px-4 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                  >
+                    Guardar Cambios
+                  </button>
+                </div>
+              </form>
+            )}
 
-              {/* Configuración de Seguridad */}
-              {activeTab === 'security' && (
+            {activeTab === 'security' && (
+              <form onSubmit={handleSubmit}>
                 <div className="space-y-6">
                   <h3 className="text-lg font-medium text-white">Seguridad</h3>
 
@@ -505,23 +569,22 @@ const SettingsPanel = ({ settings, onSave }) => {
                     </div>
                   </div>
                 </div>
-              )}
-
-              <div className="mt-8 flex justify-end">
-                <button
-                  type="button"
-                  className="mr-3 px-4 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
-                >
-                  Cancelar
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-                >
-                  Guardar Cambios
-                </button>
-              </div>
-            </form>
+                <div className="mt-8 flex justify-end">
+                  <button
+                    type="button"
+                    className="mr-3 px-4 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                  >
+                    Guardar Cambios
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </div>
