@@ -1,6 +1,6 @@
 {
       "scripts": {
-<<<<<<< HEAD
+ 
             "start": "react-scripts start",
             "build": "react-scripts build",
             "test": "react-scripts test",
@@ -32,8 +32,8 @@
                   "last 1 safari version"
             ]
       }
-}
-=======
+}{{
+
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
@@ -64,4 +64,4 @@
         ]
       }
     }
->>>>>>> 064a546f04d55ea3e8f3e5db43b1ead12f21047d
+
