@@ -1,0 +1,7 @@
+{
+  "type": "postgres",
+  "url": "postgres://user:password@localhost:5432/minimarket_pro_postgres",
+  "synchronize": false,
+  "logging": true,
+  "entities": ["src/entities/**/*.js"]
+}
